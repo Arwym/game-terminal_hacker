@@ -31,7 +31,7 @@ public class Hacker : MonoBehaviour {
 	);
 	Level LEVEL2 = new Level(
 		"Evertec, Inc. [Intranet]", 
-		new string[] { "software", "transaction", "athmovil", "popular", "windows" }, 
+		new string[] { "software", "transaction", "athmovil", "popular", "technology" }, 
 		7,
 		"Transaction Solutions Simplified"
 	);
@@ -59,7 +59,7 @@ public class Hacker : MonoBehaviour {
 
 		input = input.ToLower ().Trim ();
 
-		if (input == "menu")
+		if (input == "menu" || input == "play" || input == "start" || input == "main")
 			ShowMainMenu ();
 
 		else if (currentScreen == Screen.MainMenu) {
@@ -91,16 +91,14 @@ public class Hacker : MonoBehaviour {
 		if (isValidLevel) {
 			currentLevel = int.Parse (input);
 			StartLevel ();				
-		} else {
-			switch (input) {
-				case "valar morghulis":
-					Terminal.WriteLine ("Valar Dohaeris.");
-					break;
-				default:
-					Terminal.WriteLine ("Please choose a valid option:");
-					Debug.LogError("Invalid level number.");
-					break;
-			}
+		} else if (input == "exit" || input == "quit" || input == "close") {
+			Application.Quit ();
+			Terminal.WriteLine ("Web user: you can close the browser tab at any time.");
+		} else if (input == "valar morghulis")
+			Terminal.WriteLine ("Valar Dohaeris.");
+		else {
+			Terminal.WriteLine ("Please choose a valid option:");
+			Debug.Log("Invalid level number.");
 		}
 	}
 
